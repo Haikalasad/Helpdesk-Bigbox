@@ -47,8 +47,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="relative px-4 py-4 flex justify-between items-center bg-white shadow-lg">
-        <a className="text-3xl font-bold leading-none" href="#">
+      <nav className="relative px-4 py-3 flex justify-between items-center bg-white shadow-lg">
+        <a className="text-3xl px-6 font-bold leading-none" href="#">
           <img className="h-10" src={BigboxLogoNormal} alt="Bigbox Logo" />
         </a>
 
@@ -124,7 +124,7 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center">
-          <a className="hidden lg:inline-block text-md text-white bg-[#875BF7] font-medium hover:bg-[#6d3fca] cursor-pointer py-2 px-4 rounded-md transition duration-300" href="#">Login</a>
+          <a className="hidden lg:inline-block text-md text-white bg-[#1E48C7] font-medium hover:bg-[#0E329F] cursor-pointer py-2 px-6 rounded-md transition duration-300" href="#">Login</a>
         
           <div className="relative ml-4">
             <button className="hidden text-sm text-gray-900 font-bold hover:text-blue-600 cursor-pointer flex items-center">
