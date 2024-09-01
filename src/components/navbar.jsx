@@ -124,8 +124,8 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center">
-          <a className="hidden lg:inline-block text-md text-white bg-[#1E48C7] font-medium hover:bg-[#0E329F] cursor-pointer py-2 px-6 rounded-md transition duration-300" href="#">Login</a>
-        
+          <a className={'hidden lg:inline-block text-md text-white bg-[#1E48C7] font-medium hover:bg-[#0E329F] cursor-pointer py-2 px-6 rounded-md transition duration-300" '} onClick={() => handleNavigate('/login')}>Login</a>
+    
           <div className="relative ml-4">
             <button className="hidden text-sm text-gray-900 font-bold hover:text-blue-600 cursor-pointer flex items-center">
               <svg className="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
