@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import NewTicketModal from '../../components/NewTicketModal';
+import Footer from '../../components/footer';
 
 const NewTicket = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ticketCode, setTicketCode] = useState('');
+
+  const handleCreateTicketClick = (e) => {
+    e.preventDefault();  
+    const newTicketCode = 'TIKET-12345';
+    setTicketCode(newTicketCode);
+    setIsModalOpen(true);
+    console.log('Modal is opening with ticket code:', newTicketCode); // Add this for debugging
+  };
+  
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-100 py-8">
-      <div className="w-full max-w-5xl bg-white p-10 rounded-lg shadow-lg">
+    <section className="min-h-screen flex items-center justify-center py-24">
+      <div className="w-full max-w-5xl bg-white p-10 rounded-xl shadow-lg">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-[#0549CF] mb-4">Tiket Baru</h1>
           <p className="text-lg  text-gray-600">
@@ -91,12 +105,18 @@ const NewTicket = () => {
           </div>
 
           <button
-            type="submit"
+            onClick={handleCreateTicketClick}
             className="w-full bg-[#0549CF] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#033a9a]"
           >
-            Kirim Tiket
+            Ajukan Tiket
           </button>
         </form>
+
+        <NewTicketModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          ticketCode={ticketCode}
+        />
       </div>
     </section>
   );
