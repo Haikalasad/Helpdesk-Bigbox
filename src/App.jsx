@@ -8,11 +8,12 @@ import Dashboard from './pages/admin/Dashboard';
 import NewTicket from './pages/user/NewTicket';
 import CheckStatus from './pages/user/checkStatus';
 import Footer from './components/footer';
+import Profile from './pages/admin/Profile';
 
 function App() {
   const location = useLocation();
 
-  const hideElementsRoutes = ['/login', '/register','/dashboard'];
+  const hideElementsRoutes = ['/login', '/register','/dashboard','/profile'];
   const shouldHideElements = hideElementsRoutes.includes(location.pathname);
 
   return (
@@ -28,6 +29,9 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/Check-status" element={<CheckStatus />} />
+
+
+      <Route path="/profile" element={<Profile />} />
     </Routes>
     
     {/* Footer */}
