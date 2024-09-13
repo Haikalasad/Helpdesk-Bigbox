@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { XIcon, MenuIcon } from '@heroicons/react/outline';
-import { FaSignOutAlt, FaTicketAlt, FaCog, FaUser } from 'react-icons/fa';
+import { FaSignOutAlt, FaTicketAlt, FaCog, FaUser, FaTachometerAlt } from 'react-icons/fa'; 
 import { NavLink, useNavigate } from 'react-router-dom';
 
 function Sidebar() {
@@ -21,9 +21,28 @@ function Sidebar() {
       </button>
       <nav className="h-full flex flex-col">
         <div className={`flex items-center p-6 ${isOpen ? 'border-b border-gray-200' : ''}`}>
-          {isOpen && <span className="text-xl font-bold">Dashboard</span>}
+          {isOpen && <span className="text-xl font-bold">Admin Panel</span>}
         </div>
         <ul className="space-y-4 p-4 flex-1">
+          {/* Menu Dashboard */}
+          <li className="hover:bg-gray-200 p-2 rounded-md flex items-center space-x-4">
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? 'text-blue-500 flex items-center space-x-4' : 'text-gray-800 flex items-center space-x-4'
+              }
+              end
+            >
+              {({ isActive }) => (
+                <>
+                  <FaTachometerAlt className={`text-xl ${isActive ? 'text-blue-500' : 'text-gray-800'}`} />
+                  {isOpen && <span className={`text-lg ${isActive ? 'font-semibold' : ''}`}>Dashboard</span>}
+                </>
+              )}
+            </NavLink>
+          </li>
+          
+          {/* Menu Tickets */}
           <li className="hover:bg-gray-200 p-2 rounded-md flex items-center space-x-4">
             <NavLink
               to="/tickets"
@@ -40,22 +59,7 @@ function Sidebar() {
               )}
             </NavLink>
           </li>
-          <li className="hover:bg-gray-200 p-2 rounded-md flex items-center space-x-4">
-            <NavLink
-              to="/settings"
-              className={({ isActive }) =>
-                isActive ? 'text-blue-500 flex items-center space-x-4' : 'text-gray-800 flex items-center space-x-4'
-              }
-              end
-            >
-              {({ isActive }) => (
-                <>
-                  <FaCog className={`text-xl ${isActive ? 'text-blue-500' : 'text-gray-800'}`} />
-                  {isOpen && <span className={`text-lg ${isActive ? 'font-semibold' : ''}`}>Settings</span>}
-                </>
-              )}
-            </NavLink>
-          </li>
+          {/* Menu Profile */}
           <li className="hover:bg-gray-200 p-2 rounded-md flex items-center space-x-4">
             <NavLink
               to="/profile"
@@ -72,7 +76,29 @@ function Sidebar() {
               )}
             </NavLink>
           </li>
+
+               {/* Menu Settings */}
+          <li className="hover:bg-gray-200 p-2 rounded-md flex items-center space-x-4">
+            <NavLink
+              to="/settings"
+              className={({ isActive }) =>
+                isActive ? 'text-blue-500 flex items-center space-x-4' : 'text-gray-800 flex items-center space-x-4'
+              }
+              end
+            >
+              {({ isActive }) => (
+                <>
+                  <FaCog className={`text-xl ${isActive ? 'text-blue-500' : 'text-gray-800'}`} />
+                  {isOpen && <span className={`text-lg ${isActive ? 'font-semibold' : ''}`}>Settings</span>}
+                </>
+              )}
+            </NavLink>
+          </li>
         </ul>
+
+        
+        
+        {/* Logout Button */}
         <div className="p-4 border-t border-gray-200">
           <li
             onClick={handleClick}

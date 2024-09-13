@@ -130,7 +130,7 @@ function TicketTable({ tickets }) {
       </div>
 
       <table className="min-w-full table-auto rounded-lg">
-      <thead className=" bg-neutral-100 font-medium dark:border-neutral-500 dark:text-neutral-800">
+      <thead className=" bg-neutral-50 font-medium dark:border-neutral-500 dark:text-neutral-800">
           <tr>
             <th className="px-4 py-2 text-center">Ticket #</th>
             <th className="px-4 py-2 text-center">Username</th>

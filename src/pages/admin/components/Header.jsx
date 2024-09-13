@@ -5,7 +5,7 @@ import BigboxLogo from '../../../assets/Bigbox-Logo-normal.png';
 
 function Header() {
   return (
-    <header className="flex justify-between items-center p-7 bg-white shadow-md">
+    <header className="fixed-header flex justify-between items-center p-7 bg-white shadow-md">
       <div className="flex items-center">
         <img src={BigboxLogo} alt="Bigbox Logo" className="w-24 h-auto" />
       </div>

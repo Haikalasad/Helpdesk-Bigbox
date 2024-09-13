@@ -24,10 +24,6 @@ const Profile = () => {
     };
 
     return (
-        <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex-1 flex flex-col bg-gray-100">
-                <Header />
                 <div className="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-md max-w-6xl ">
                     <h2 className="text-2xl font-bold mb-6">Edit Profile</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -155,8 +151,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+    
     )
 }
 
