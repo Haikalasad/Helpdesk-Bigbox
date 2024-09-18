@@ -11,6 +11,7 @@ import Footer from './components/footer';
 import Profile from './pages/admin/Profile';
 import Dashboard from './pages/admin/Dashboard';
 import MainLayout from './pages/admin/MainLayout';
+import DetailTicket from './pages/admin/DetailTicket';
 
 function App() {
   const location = useLocation();
@@ -24,15 +25,20 @@ function App() {
     {!shouldHideElements && <Navbar />}
     
     <Routes>
+
+      {/* User Routes */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/Create-ticket" element={<NewTicket />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-     
       <Route path="/Check-status" element={<CheckStatus />} />
+
+
+      {/* admin routes */}
       <Route path="/dashboard" element={<MainLayout><Dashboard /></MainLayout>} />
-        <Route path="/tickets" element={<MainLayout><Tickets /></MainLayout>} />
-        <Route path="/profile" element={<MainLayout><Profile /></MainLayout>} />
+      <Route path="/tickets" element={<MainLayout><Tickets /></MainLayout>} />
+      <Route path="/profile" element={<MainLayout><Profile /></MainLayout>} />
+      <Route path="/tickets/detail/{id}" element={<MainLayout><DetailTicket/></MainLayout>}/>
     </Routes>
  
     {!shouldHideElements && <Footer />}
