@@ -6,21 +6,225 @@ import { FaTicketAlt, FaSpinner, FaCheckCircle } from 'react-icons/fa';
 const Tickets = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const loggedInAdmin = 'Jhon Doe';
-
   const tickets = [
-    { id: 1, username: 'johndoe', product: 'BigSocial', assignedAdmin: 'Jhon Doe', priority: 'High', date: '2024-09-01', status: 'done', subjectKeluhan: 'Problem with login' },
-    { id: 2, username: 'janedoe', product: 'BigMarket', assignedAdmin: 'Jhon Doe', priority: 'Medium', date: '2024-09-02', status: 'on-progress', subjectKeluhan: 'Payment gateway issue' },
-    { id: 3, username: 'charlie123', product: 'BigLegal', assignedAdmin: 'Carol', priority: 'Low', date: '2024-09-03', status: 'done', subjectKeluhan: 'Document not uploading' },
-    { id: 4, username: 'david_smith', product: 'BigView', assignedAdmin: 'Jhon Doe', priority: 'High', date: '2024-09-04', status: 'done', subjectKeluhan: 'Slow dashboard loading' },
-    { id: 5, username: 'emily_jones', product: 'BigOne', assignedAdmin: 'Eve', priority: 'Medium', date: '2024-09-05', status: 'done', subjectKeluhan: 'Error in report generation' },
-    { id: 6, username: 'frankie', product: 'BigLake', assignedAdmin: 'Frank', priority: 'Low', date: '2024-09-06', status: 'on-progress', subjectKeluhan: 'Search not working' },
-    { id: 7, username: 'grace_white', product: 'BigVision', assignedAdmin: 'Grace', priority: 'High', date: '2024-09-07', status: 'done', subjectKeluhan: 'Issue with user permissions' },
-    { id: 8, username: 'henry_brown', product: 'BigAction', assignedAdmin: 'Henry', priority: 'Medium', date: '2024-09-08', status: 'on-progress', subjectKeluhan: 'Data syncing problems' },
-    { id: 9, username: 'isla_black', product: 'BigQuery', assignedAdmin: 'Jhon Doe', priority: 'Low', date: '2024-09-09', status: 'done', subjectKeluhan: 'Query results not accurate' },
-    { id: 10, username: 'jackson', product: 'BigSpider', assignedAdmin: 'Jack', priority: 'High', date: '2024-09-10', status: 'done', subjectKeluhan: 'Spider component error' },
-    { id: 11, username: 'katie_green', product: 'BigBuilder', assignedAdmin: 'Katie', priority: 'Medium', date: '2024-09-11', status: 'on-progress', subjectKeluhan: 'Project not saving' },
-    { id: 12, username: 'liam_king', product: 'BigAssistant', assignedAdmin: 'Liam', priority: 'Low', date: '2024-09-12', status: 'done', subjectKeluhan: 'Voice commands not recognized' },
-  ];
+    {
+        id: 1,
+        username: 'johndoe',
+        product: 'BigSocial',
+        assignedAdmin: 'Jhon Doe',
+        priority: 'High',
+        date: '2024-09-01',
+        status: 'done',
+        subjectKeluhan: 'Problem with login',
+        filePendukung: [
+            {
+                fileName: 'support_image_1.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 2,
+        username: 'janedoe',
+        product: 'BigMarket',
+        assignedAdmin: 'Jhon Doe',
+        priority: 'Medium',
+        date: '2024-09-02',
+        status: 'on-progress',
+        subjectKeluhan: 'Payment gateway issue',
+        filePendukung: [
+            {
+                fileName: 'support_image_2.png',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/png',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 3,
+        username: 'charlie123',
+        product: 'BigLegal',
+        assignedAdmin: 'Carol',
+        priority: 'Low',
+        date: '2024-09-03',
+        status: 'done',
+        subjectKeluhan: 'Document not uploading',
+        filePendukung: [
+            {
+                fileName: 'support_image_3.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 4,
+        username: 'david_smith',
+        product: 'BigView',
+        assignedAdmin: 'Jhon Doe',
+        priority: 'High',
+        date: '2024-09-04',
+        status: 'done',
+        subjectKeluhan: 'Slow dashboard loading',
+        filePendukung: [
+            {
+                fileName: 'support_image_4.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 5,
+        username: 'emily_jones',
+        product: 'BigOne',
+        assignedAdmin: 'Eve',
+        priority: 'Medium',
+        date: '2024-09-05',
+        status: 'done',
+        subjectKeluhan: 'Error in report generation',
+        filePendukung: [
+            {
+                fileName: 'support_image_5.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 6,
+        username: 'frankie',
+        product: 'BigLake',
+        assignedAdmin: 'Frank',
+        priority: 'Low',
+        date: '2024-09-06',
+        status: 'on-progress',
+        subjectKeluhan: 'Search not working',
+        filePendukung: [
+            {
+                fileName: 'support_image_6.png',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/png',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 7,
+        username: 'grace_white',
+        product: 'BigVision',
+        assignedAdmin: 'Grace',
+        priority: 'High',
+        date: '2024-09-07',
+        status: 'done',
+        subjectKeluhan: 'Issue with user permissions',
+        filePendukung: [
+            {
+                fileName: 'support_image_7.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 8,
+        username: 'henry_brown',
+        product: 'BigAction',
+        assignedAdmin: 'Henry',
+        priority: 'Medium',
+        date: '2024-09-08',
+        status: 'on-progress',
+        subjectKeluhan: 'Data syncing problems',
+        filePendukung: [
+            {
+                fileName: 'support_image_8.png',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/png',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 9,
+        username: 'isla_black',
+        product: 'BigQuery',
+        assignedAdmin: 'Jhon Doe',
+        priority: 'Low',
+        date: '2024-09-09',
+        status: 'done',
+        subjectKeluhan: 'Query results not accurate',
+        filePendukung: [
+            {
+                fileName: 'support_image_9.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 10,
+        username: 'jackson',
+        product: 'BigSpider',
+        assignedAdmin: 'Jack',
+        priority: 'High',
+        date: '2024-09-10',
+        status: 'done',
+        subjectKeluhan: 'Spider component error',
+        filePendukung: [
+            {
+                fileName: 'support_image_10.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 11,
+        username: 'katie_green',
+        product: 'BigBuilder',
+        assignedAdmin: 'Katie',
+        priority: 'Medium',
+        date: '2024-09-11',
+        status: 'on-progress',
+        subjectKeluhan: 'Project not saving',
+        filePendukung: [
+            {
+                fileName: 'support_image_11.png',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/png',
+                fileSize: '150KB'
+            }
+        ]
+    },
+    {
+        id: 12,
+        username: 'liam_king',
+        product: 'BigAssistant',
+        assignedAdmin: 'Liam',
+        priority: 'Low',
+        date: '2024-09-12',
+        status: 'done',
+        subjectKeluhan: 'Voice commands not recognized',
+        filePendukung: [
+            {
+                fileName: 'support_image_12.jpg',
+                fileUrl: 'https://via.placeholder.com/150',
+                fileType: 'image/jpeg',
+                fileSize: '150KB'
+            }
+        ]
+    }
+];
+
 
   const adminTicketsData = tickets.reduce((acc, ticket) => {
     const { assignedAdmin, status } = ticket;

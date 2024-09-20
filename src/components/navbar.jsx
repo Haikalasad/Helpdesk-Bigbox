@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import BigboxLogoNormal from '../assets/Bigbox-Logo-normal.png';
 import BigboxLogoSmall from '../assets/Bigbox-Logo-small.png';
+import { FaBell } from 'react-icons/fa'; // Ikon notifikasi
+import Avatar from 'react-avatar'; // Untuk avatar user
 
-const Navbar = () => {
+const Navbar = ({ loggedInUser, setLoggedInUser }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -45,9 +47,15 @@ const Navbar = () => {
     };
   }, []);
 
+
+  const handleLogout = () => {
+    setLoggedInUser(null); // Clear logged-in user
+    navigate('/login');
+  };
+
   return (
     <>
-     <nav className="fixed top-0 left-0 w-full px-4 py-4 flex justify-between items-center bg-white shadow-lg z-50">
+      <nav className="fixed top-0 left-0 w-full px-4 py-4 flex justify-between items-center bg-white shadow-lg z-50">
         <a className="text-3xl px-6 font-bold leading-none" href="#">
           <img className="h-10" src={BigboxLogoNormal} alt="Bigbox Logo" />
         </a>
@@ -60,7 +68,8 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+
+       <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
 
           <li className="relative group">
             <a className={`text-md font-medium cursor-pointer flex items-center ${isActive('/produk')}`} onClick={() => handleNavigate('/')}>
@@ -122,22 +131,19 @@ const Navbar = () => {
             </ul>
           </li>
         </ul>
-
-        <div className="flex items-center">
-          <a className={'hidden lg:inline-block text-md text-white bg-[#1E48C7] font-medium hover:bg-[#0E329F] cursor-pointer py-2 px-6 rounded-md transition duration-300" '} onClick={() => handleNavigate('/login')}>Login</a>
-    
-          <div className="relative ml-4">
-            <button className="hidden text-sm text-gray-900 font-bold hover:text-blue-600 cursor-pointer flex items-center">
-              <svg className="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 4.5c4.142 0 7.5 3.358 7.5 7.5s-3.358 7.5-7.5 7.5S4.5 16.142 4.5 12 7.858 4.5 12 4.5zm0-2.25C6.624 2.25 2.25 6.624 2.25 12s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25zM11.25 12h1.5v7.5h-1.5V12zm0-4.5h1.5v3h-1.5V7.5z" />
-              </svg>
-              Bahasa
-            </button>
-            <ul className="hidden absolute right-0 mt-2 w-40 bg-white shadow-md rounded-lg p-2 space-y-2">
-              <li><a className="block p-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Bahasa Indonesia</a></li>
-              <li><a className="block p-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">English</a></li>
-            </ul>
-          </div>
+        <div className="flex items-center space-x-4">
+          {loggedInUser? (
+            <>
+              <div className="flex items-center space-x-2">
+                <Avatar name="John Doe" size="30" round={true} />
+                <span className="text-sm font-medium">{loggedInUser.name}</span>
+              </div>
+            </>
+          ) : (
+            <a className="text-md text-white bg-[#1E48C7] font-medium hover:bg-[#0E329F] cursor-pointer py-2 px-6 rounded-md transition duration-300" onClick={() => handleNavigate('/login')}>
+              Login
+            </a>
+          )}
         </div>
       </nav>
     </>

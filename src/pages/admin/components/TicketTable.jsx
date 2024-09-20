@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaFilter, FaTag, FaUser, FaCalendar } from 'react-icons/fa'; 
 import Pagination from './Pagination'; 
+import { Link } from 'react-router-dom';
 
 function TicketTable({ tickets }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,6 +14,7 @@ function TicketTable({ tickets }) {
   
 
   const ticketsPerPage = 5;
+
 
   const uniqueProducts = ['All', ...new Set(tickets.map(ticket => ticket.product))];
   const uniqueAssignedAdmins = ['All', ...new Set(tickets.map(ticket => ticket.assignedAdmin))];
@@ -52,6 +54,7 @@ function TicketTable({ tickets }) {
       setCurrentPage(page);
     }
   };
+
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md w-full">
@@ -156,8 +159,8 @@ function TicketTable({ tickets }) {
                 </span>
               </td>
               <td className=" px-4 py-2">{ticket.date}</td>
-              <td className=" px-4 py-2 text-center">
-                <button className="bg-[#1E48C7] text-white py-1 px-3 rounded">View</button>
+              <td className="px-4 py-2 text-center">
+              <Link to={`/tickets/detail/${ticket.id}`} className="text-blue-500 hover:underline">View Detail</Link>
               </td>
             </tr>
           ))}
