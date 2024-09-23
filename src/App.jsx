@@ -7,7 +7,7 @@ import RegisterPage from './pages/user/RegisterPage';
 import Tickets from './pages/admin/Tickets';
 import NewTicket from './pages/user/NewTicket';
 import CheckStatus from './pages/user/CheckStatus';
-import Footer from './components/footer';
+import Footer from './components/Footer';
 import Profile from './pages/admin/Profile';
 import Dashboard from './pages/admin/Dashboard';
 import MainLayout from './pages/admin/MainLayout';

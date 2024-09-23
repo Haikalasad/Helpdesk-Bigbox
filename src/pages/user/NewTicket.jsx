@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NewTicketModal from '../../components/NewTicketModal';
-import Footer from '../../components/footer';
+import Footer from '../../components/Footer';
 
 const NewTicket = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

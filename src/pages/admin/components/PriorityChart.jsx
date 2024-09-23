@@ -1,7 +1,8 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
-function AdminTicketsChart({ data, loggedInAdmin }) {
+function PriorityChart
+({ data, loggedInAdmin }) {
   const chartColors = {
     onProgress: { id: 'onProgress', start: '#FF931F', end: '#FFEBA4' },
     completed: { id: 'completed', start: '#90CA47', end: '#BEED99' },
@@ -65,4 +66,5 @@ function AdminTicketsChart({ data, loggedInAdmin }) {
   );
 }
 
-export default AdminTicketsChart;
+export default PriorityChart
+;
