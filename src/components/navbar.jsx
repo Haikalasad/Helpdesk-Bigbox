@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import BigboxLogoNormal from '../assets/Bigbox-Logo-normal.png';
-import BigboxLogoSmall from '../assets/Bigbox-Logo-small.png';
-import { FaBell } from 'react-icons/fa'; // Ikon notifikasi
-import Avatar from 'react-avatar'; // Untuk avatar user
+import Avatar from 'react-avatar'; 
 
 const Navbar = ({ loggedInUser, setLoggedInUser }) => {
   const navigate = useNavigate();
@@ -49,7 +47,7 @@ const Navbar = ({ loggedInUser, setLoggedInUser }) => {
 
 
   const handleLogout = () => {
-    setLoggedInUser(null); // Clear logged-in user
+    setLoggedInUser(null); 
     navigate('/login');
   };
 
@@ -69,7 +67,7 @@ const Navbar = ({ loggedInUser, setLoggedInUser }) => {
           </button>
         </div>
 
-       <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+       <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
 
           <li className="relative group">
             <a className={`text-md font-medium cursor-pointer flex items-center ${isActive('/produk')}`} onClick={() => handleNavigate('/')}>
