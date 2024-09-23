@@ -61,7 +61,7 @@ const LoginPage = ({ setLoggedInUser }) => {
       setError('');
 
       setTimeout(() => {
-        navigate('/');
+        navigate('/landing-page');
       }, 2000);
     } else {
       setSnackbarMessage('Invalid email or password.');

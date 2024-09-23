@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import Papa from 'papaparse';
+import { jsPDF } from "jspdf";
+import PizZip from "pizzip";
+import Docxtemplater from "docxtemplater";
+import { saveAs } from "file-saver";
 
 
 const Dashboard = () => {
@@ -8,6 +13,73 @@ const Dashboard = () => {
 
     const handleDropdownToggle = () => {
         setDropdownOpen(!dropdownOpen);
+    };
+
+    const exportCSV = () => {
+        const csvData = barChartData.map(item => ({
+            Month: item.name,
+            Created: item.Created,
+            Solved: item.Solved
+        }));
+        const csv = Papa.unparse(csvData);
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        saveAs(blob, 'tickets_report.csv');
+        setDropdownOpen(false);
+    };
+
+    const exportAsPDF = () => {
+        const doc = new jsPDF();
+
+        doc.text("Dashboard Report", 10, 10);
+        doc.text("Ticket Statistics:", 10, 20);
+
+        badgeData.forEach((badge, index) => {
+            doc.text(`${badge.title}: ${badge.total}`, 10, 30 + (index * 10));
+        });
+
+        doc.save("dashboard_report.pdf");
+        setDropdownOpen(false);
+    };
+
+    const createDocxTemplate = () => {
+        return `
+            <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                <w:body>
+                    <w:p>
+                        <w:r>
+                            <w:t>Dashboard Report</w:t>
+                        </w:r>
+                    </w:p>
+                    <w:p>
+                        <w:r>
+                            <w:t>Ticket Statistics:</w:t>
+                        </w:r>
+                    </w:p>
+                    ${badgeData.map(badge => `
+                        <w:p>
+                            <w:r>
+                                <w:t>${badge.title}: ${badge.total}</w:t>
+                            </w:r>
+                        </w:p>
+                    `).join('')}
+                </w:body>
+            </w:document>
+        `;
+    };
+
+    const exportAsDocx = () => {
+        const zip = new PizZip();
+        const docxTemplate = createDocxTemplate();
+        zip.file("word/document.xml", docxTemplate);
+
+        const doc = new Docxtemplater(zip);
+        const out = doc.getZip().generate({
+            type: "blob",
+            mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
+
+        saveAs(out, "dashboard_report.docx");
+        setDropdownOpen(false);
     };
 
     const badgeData = [
@@ -67,11 +139,26 @@ const Dashboard = () => {
                         </svg>
                     </button>
                     {dropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Export as CSV</button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Export as PDF</button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">Export as Docs</button>
-                        </div>
+                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                         <button
+                             className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                             onClick={exportCSV}
+                         >
+                             Export as CSV
+                         </button>
+                         <button
+                             className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                             onClick={exportAsPDF}
+                         >
+                             Export as PDF
+                         </button>
+                         <button
+                             className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                             onClick={exportAsDocx}
+                         >
+                             Export as Docs
+                         </button>
+                     </div>
                     )}
                 </div>
             </header>

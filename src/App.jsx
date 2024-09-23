@@ -17,7 +17,7 @@ function App() {
   const location = useLocation();
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-  const hideElementsRoutes = ['/login', '/register', '/tickets', '/profile', '/dashboard', '/tickets/detail/:id'];
+  const hideElementsRoutes = ['/', '/register', '/tickets', '/profile', '/dashboard', '/tickets/detail/:id'];
   const shouldHideElements = hideElementsRoutes.some(route => {
     const path = route.replace(':id', '\\d+'); 
     const regex = new RegExp(`^${path}$`);
@@ -262,9 +262,9 @@ function App() {
       
       <Routes>
         {/* User Routes */}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/landing-page" element={<LandingPage />} />
         <Route path="/Create-ticket" element={<NewTicket />} />
-        <Route path="/login" element={<LoginPage setLoggedInUser={setLoggedInUser} />} />
+        <Route path="/" element={<LoginPage setLoggedInUser={setLoggedInUser} />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/Check-status" element={<CheckStatus />} />
 
